@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: "Times New Roman", Times, serif;
-            background-color: #fff;
+            background-color: #fcf8f1;
             color: #000;
             overflow-x: hidden;
         }
@@ -20,12 +20,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2.5rem 4rem;
-            position: fixed; /* Fixed to stay above the scrolling video */
+            padding: 1.5rem 4rem;
+            position: fixed;    /* Keeps it at the top while scrolling */
             top: 0;
             width: 100%;
             box-sizing: border-box;
-            z-index: 100;
+            
+            /* THE FIX: High Z-index ensures it stays on top of all other divs */
+            z-index: 9999; 
+            
+            /* Optional: Add a semi-transparent background so text doesn't 
+            clash with content passing underneath */
+            background-color: #fcf8f1; 
+            backdrop-filter: blur(10px); /* Creates a high-end frosted glass effect */
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .brand-logo {
@@ -367,12 +375,549 @@
                 gap: 0.5rem;
             }
         }
+
+        /* manifesto section */
+        .manifesto-section {
+            background-color: #f9f7f2;
+            padding: 120px 4rem;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center; /* Centers the inner div horizontally */
+            align-items: center;     /* Centers vertically if the section has height */
+            text-align: left;        /* Keeps text left-aligned within the centered block */
+        }
+
+        .manifesto-inner {
+            max-width: 1100px;       /* Constrains width to look like the screenshot */
+            width: 100%;
+            margin: 0 auto;          /* Standard centering trick */
+        }
+
+        .manifesto-title {
+            font-family: "Times New Roman", Times, serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 5rem;
+            letter-spacing: -1px;
+            /* If you want the actual text characters centered, uncomment below: */
+            /* text-align: center; */ 
+        }
+
+        .manifesto-grid {
+            display: flex;
+            gap: 6rem;               /* Increased gap for a cleaner look */
+            justify-content: space-between;
+        }
+
+        .manifesto-column {
+            flex: 1;
+        }
+
+        .manifesto-column p {
+            font-family: Arial, sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .manifesto-section {
+                padding: 80px 2rem;
+            }
+            
+            .manifesto-grid {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .manifesto-title {
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* our theory section */
+        .theory-section {
+            background-color: #f9f7f2;
+            padding: 100px 4rem;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+        }
+
+        .theory-inner {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .theory-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .theory-main-title {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .theory-subtitle {
+            font-family: Arial, sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 650px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* Pillars Grid */
+        .pillars-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .pillar-item {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .pillar-icon {
+            min-width: 40px;
+            width: 40px;
+            height: 40px;
+            background-color: #f0edff; /* Light purple tint */
+            padding: 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pillar-title {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+            text-transform: none;
+        }
+
+        .pillar-text {
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.7;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 1024px) {
+            .pillars-grid {
+                flex-direction: column;
+                gap: 4rem;
+                align-items: center;
+            }
+            
+            .pillar-item {
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .theory-section {
+                padding: 60px 2rem;
+            }
+            .theory-main-title {
+                font-size: 2.2rem;
+            }
+            .theory-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* our edge section */
+
+        .edge-section {
+            background-color: #f9f7f2; /* Fallback color */
+            padding: 120px 4rem;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* Sits below the Nav bar */
+        }
+
+        /* Video Styling */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.12; /* Keeps text readable over the video */
+            filter: grayscale(100%);
+        }
+
+        .edge-inner {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .edge-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .edge-label {
+            font-family: Arial, sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .edge-main-title {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin: 0.5rem 0 2rem 0;
+        }
+
+        .edge-subtitle {
+            font-family: Arial, sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+        }
+
+        /* Grid */
+        .edge-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .edge-item {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .edge-icon-box {
+            min-width: 44px;
+            width: 44px;
+            height: 44px;
+            background-color: #f0edff;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edge-pillar-title {
+            font-family: Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 1rem 0;
+        }
+
+        .edge-text {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 1024px) {
+            .edge-grid {
+                flex-direction: column;
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .edge-section { padding: 80px 2rem; }
+            .edge-main-title { font-size: 2.5rem; }
+            .edge-subtitle { font-size: 1.1rem; }
+        }
+
+        /* convention section */
+
+        /* Section Container */
+    .convictions-section {
+        background-color: #f9f7f2;
+        padding: 80px 4rem;
+        color: #1a1a1a;
+    }
+
+    /* Header Styling */
+    .convictions-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4rem;
+    }
+
+    .section-title-large {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 3.5rem;
+        line-height: 1;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    .support-label {
+        font-family: Arial, sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        max-width: 150px;
+        text-align: right;
+        opacity: 0.8;
+    }
+
+    /* Grid for Featured Images */
+    .convictions-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px; /* Creates that thin divider line effect */
+        background-color: rgba(0,0,0,0.1); /* Divider color */
+        border: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 8rem;
+    }
+
+    .conviction-card {
+        position: relative;
+        height: 600px;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .conviction-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: sepia(20%) contrast(90%); /* Replicates the vintage photo feel */
+        transition: transform 0.5s ease;
+    }
+
+    .conviction-card:hover .conviction-img {
+        transform: scale(1.05);
+    }
+
+    .card-overlay {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        color: #1a1a1a;
+    }
+
+    .card-title {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 2rem;
+        margin: 0 0 5px 0;
+        font-weight: 400;
+    }
+
+    .card-tag {
+        font-family: Arial, sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 1.5px;
+        opacity: 0.7;
+    }
+
+    /* Quote Styling */
+    .featured-quote-container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 4rem;
+        border-top: 2px solid #000;
+    }
+
+    .manifesto-quote {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 2.2rem;
+        line-height: 1.3;
+        margin-bottom: 2rem;
+        font-style: normal;
+    }
+
+    .quote-author {
+        font-family: Arial, sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        font-weight: 700;
+        opacity: 0.8;
+    }
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 1024px) {
+        .convictions-grid {
+            grid-template-columns: 1fr;
+        }
+        .conviction-card {
+            height: 450px;
+        }
+        .section-title-large {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .convictions-section {
+            padding: 40px 2rem;
+        }
+        .convictions-header {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .support-label {
+            text-align: left;
+        }
+        .manifesto-quote {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* footer section */
+
+    .footer-container {
+            background-color: #f9f7f2;
+            padding: 100px 4rem 40px 4rem;
+            color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding-bottom: 80px;
+            border-bottom: 1.5px solid #000;
+            margin-bottom: 80px;
+        }
+
+        .stat-number {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin: 0 0 10px 0;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Main Footer Section */
+        .main-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 80px;
+        }
+
+        .footer-left {
+            max-width: 320px;
+        }
+
+        .footer-logo {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.8rem;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 100px;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-right address, .footer-links {
+            font-style: normal;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: inherit;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Copyright Bar */
+        .copyright-bar {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 30px;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            opacity: 0.6;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 4rem; }
+            .footer-right { gap: 50px; }
+        }
+
+        @media (max-width: 768px) {
+            .footer-container { padding: 60px 2rem 30px 2rem; }
+            .stats-grid { grid-template-columns: 1fr; text-align: center; }
+            .main-footer { flex-direction: column; gap: 4rem; }
+            .footer-right { width: 100%; justify-content: space-between; gap: 20px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="site-container">
-    <nav class="nav-section">
+    <nav style="z-index: 99999;" class="nav-section">
         <div class="brand-logo">VINTAGEc</div>
         
         <div class="nav-right-group">
@@ -457,9 +1002,10 @@
         <div class="logo-card"><img src="vrdtools.png" alt="VRDTools"></div>
         <div class="logo-card"><img src="xvixel.png" alt="Xvixel"></div>
     </div>
+</section>
 
 
-    <section class="network-section">
+<section class="network-section">
     <h2 class="network-title">From our Network</h2>
 
     <div class="testimonial-slider">
@@ -504,6 +1050,265 @@
             </div>
         </div>
     </div>
+</section>
+
+<section class="manifesto-section">
+    <div class="manifesto-inner">
+        <h2 class="manifesto-title">
+            We believe in the power of the marginal.
+        </h2>
+
+        <div class="manifesto-grid">
+            <div class="manifesto-column">
+                <p>
+                    In a world obsessed with the immediate, we look for the enduring. 
+                    Our capital is patient, our conviction is absolute, and our network is clandestine.
+                </p>
+            </div>
+            <div class="manifesto-column">
+                <p>
+                    The greatest breakthroughs often arrive disguised as toys or curiosities. 
+                    We provide the soil for these seeds to grow into cathedrals of industry.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="theory-section">
+    <div class="theory-inner">
+        <div class="theory-header">
+            <h2 class="theory-main-title">Our Theory</h2>
+            <p class="theory-subtitle">
+                We believe that deep technology has the power to reshape industries 
+                and create a more prosperous future for Africa. Our investment thesis is 
+                built on three core pillars.
+            </p>
+        </div>
+
+        <div class="pillars-grid">
+            <div class="pillar-item">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="pillar-content">
+                    <h3 class="pillar-title">Thesis-Driven Investing</h3>
+                    <p class="pillar-text">
+                        We invest in companies that align with our core theses about the future of technology and its impact on the world.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pillar-item">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="pillar-content">
+                    <h3 class="pillar-title">Long-Term Partnerships</h3>
+                    <p class="pillar-text">
+                        We are long-term partners, not just investors. We provide our portfolio companies with the support they need to succeed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pillar-item">
+                <div class="pillar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="pillar-content">
+                    <h3 class="pillar-title">Technology-First Approach</h3>
+                    <p class="pillar-text">
+                        We believe that technology is the key to solving some of the world's most pressing problems. We invest in companies that are developing groundbreaking technologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="edge-section">
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="Vintage.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="edge-inner">
+        <div class="edge-header">
+            <span class="edge-label">Our Edge</span>
+            <h2 class="edge-main-title">What Sets Us Apart</h2>
+            <p class="edge-subtitle">
+                We operate at the intersection of deep technology and emerging markets, a space with unique challenges and extraordinary potential.
+            </p>
+        </div>
+
+        <div class="edge-grid">
+            <div class="edge-item">
+                <div class="edge-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="edge-content">
+                    <h3 class="edge-pillar-title">Specialized Focus</h3>
+                    <p class="edge-text">
+                        We are Africa's only dedicated deep tech and robotics fund, allowing us to see opportunities others miss.
+                    </p>
+                </div>
+            </div>
+
+            <div class="edge-item">
+                <div class="edge-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="edge-content">
+                    <h3 class="edge-pillar-title">Proprietary Deal Flow</h3>
+                    <p class="edge-text">
+                        Our deep roots in technical communities give us unparalleled access to the most promising founders and ideas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="edge-item">
+                <div class="edge-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#5E3BEE" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div class="edge-content">
+                    <h3 class="edge-pillar-title">Hands-On Expertise</h3>
+                    <p class="edge-text">
+                        We provide more than capital. Our team brings manufacturing and hardware expertise to help companies build and scale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="convictions-section">
+    <div class="convictions-header">
+        <h2 class="section-title-large">Featured<br>Convictions</h2>
+        <p class="support-label">A SELECTION OF ARCHITECTS WE SUPPORT.</p>
+    </div>
+
+    <div class="convictions-grid">
+        <div class="conviction-card">
+            <img src="assest/abstract-vintage-structure.jpg" alt="Nebula Architecture" class="conviction-img">
+            <div class="card-overlay">
+                <h3 class="card-title">Nebula</h3>
+                <span class="card-tag">QUANTUM COMPUTING</span>
+            </div>
+        </div>
+        <div class="conviction-card">
+            <img src="assest/2nd.png" alt="Eidos Diagram" class="conviction-img">
+            <div class="card-overlay">
+                <h3 class="card-title">Eidos</h3>
+                <span class="card-tag">SYNTHETIC BIOLOGY</span>
+            </div>
+        </div>
+        <div class="conviction-card">
+            <img src="assest/3rd.png" alt="Aether Landscape" class="conviction-img">
+            <div class="card-overlay">
+                <h3 class="card-title">Aether</h3>
+                <span class="card-tag">CLEAN ENERGY</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-quote-container">
+        <blockquote class="manifesto-quote">
+            "VINTAGEc didn't just give us capital. They gave us the courage to stay true to our original, somewhat 'crazy' vision when everyone else told us to normalize."
+        </blockquote>
+        <cite class="quote-author">— EMMANUEL, CEO OF IGREEN REPUBLIC</cite>
+    </div>
+</section>
+
+<section class="footer-container">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h3 class="stat-number">$9.8M</h3>
+            <p class="stat-label">ASSETS UNDER CONVICTION</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="stat-number">25</h3>
+            <p class="stat-label">PARTNER COMPANIES</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="stat-number">06</h3>
+            <p class="stat-label">YEARS OF PATIENT CAPITAL</p>
+        </div>
+        <div class="stat-item">
+            <h3 class="stat-number">02</h3>
+            <p class="stat-label">GLOBAL OFFICES</p>
+        </div>
+    </div>
+
+    <div class="main-footer">
+        <div class="footer-left">
+            <h2 class="footer-logo">VINTAGEc</h2>
+            <p class="footer-tagline">
+                A venture collective for the modern era, built on vintage principles of trust, depth, and radical curiosity.
+            </p>
+        </div>
+
+        <div class="footer-right">
+            <div class="footer-nav-col">
+                <h4 class="nav-title">OFFICE</h4>
+                <address>
+                    12 Rue de l'Avenir<br>
+                    Paris, France
+                </address>
+            </div>
+            <div class="footer-nav-col">
+                <h4 class="nav-title">CONNECT</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Twitter / X</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-bar">
+        <span>© 2026 VINTAGEC CAPITAL PARTNERS</span>
+    </div>
+</section>
 
 <script>
     function toggleMobileMenu() {
